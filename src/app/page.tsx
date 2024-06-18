@@ -1,4 +1,5 @@
 import { ProductType } from "@/types/ProductType";
+import { Product } from "./components/Product";
 
 async function getProducts() {
   const res = await fetch("https://fakestoreapi.com/products");
@@ -14,9 +15,11 @@ export default async function Home() {
   console.log(products);
   return (
     <div className="max-w-7xl mx-auto pt-8 px-8 xl:px-0">
-      {products.map((product: ProductType) => (
-        <div key={product.id}>{product.title}</div>
-      ))}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 xl:gap-6">
+        {products.map((product: ProductType) => (
+          <Product key={product.id} product={product} />
+        ))}
+      </div>
     </div>
   );
 }
